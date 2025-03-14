@@ -8,10 +8,10 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: employee-service
-          uri: lb://EMPLOYEE-SERVICE
+        - id: customer-service
+          uri: lb://CUSTOMER-SERVICE
           predicates:
-            - Path=/employee-service/**
+            - Path=/customer-service/**
 
 eureka:
   client:
