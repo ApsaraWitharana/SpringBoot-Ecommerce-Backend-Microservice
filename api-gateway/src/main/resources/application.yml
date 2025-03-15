@@ -13,6 +13,11 @@ spring:
           predicates:
             - Path=/customer-service/**
 
+        - id: item-service
+          uri: lb://ITEM-SERVICE
+          predicates:
+            - Path=/item-service/**
+
 eureka:
   client:
     registerWithEureka: true

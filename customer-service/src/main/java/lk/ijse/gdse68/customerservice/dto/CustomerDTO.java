@@ -1,5 +1,6 @@
 package lk.ijse.gdse68.customerservice.dto;
 
+import lk.ijse.gdse68.customerservice.customObj.CustomerResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerDTO implements  SuperDTO {
-    private String employeeId;
+public class CustomerDTO implements CustomerResponse,SuperDTO {
+    private String customerId;
     private String name;
     private String address;
     private String email;

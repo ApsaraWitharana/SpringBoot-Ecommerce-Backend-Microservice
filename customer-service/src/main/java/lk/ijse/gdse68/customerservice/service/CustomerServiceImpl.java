@@ -29,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void save(CustomerDTO dto) {
-        CustomerEntity saveEmployee = Optional.ofNullable(customerDAO.save(mapping.convertToEntity(dto)))
+        CustomerEntity saveCustomer = Optional.ofNullable(customerDAO.save(mapping.convertToEntity(dto)))
                 .orElseThrow(() -> new DataPersistFailedException("Failed to save Customer data!"));
     }
 

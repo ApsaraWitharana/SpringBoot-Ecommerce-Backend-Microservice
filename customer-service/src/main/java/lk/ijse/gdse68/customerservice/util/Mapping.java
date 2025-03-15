@@ -28,7 +28,7 @@ public class Mapping {
 
     public CustomerEntity convertToEntity(CustomerDTO dto) {
         CustomerEntity entity = new CustomerEntity();
-        entity.setId(dto.getEmployeeId()); // Map DTO's 'employeeId' to entity's 'id'
+        entity.setId(dto.getCustomerId()); // Map DTO's 'employeeId' to entity's 'id'
         entity.setName(dto.getName());
         entity.setAddress(dto.getAddress());
         entity.setEmail(dto.getEmail());

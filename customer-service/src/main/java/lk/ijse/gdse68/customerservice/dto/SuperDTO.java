@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  #* @author : sachini apsara
- #* @date : 2024-03-11
+ #* @date : 2024-03-14
  #**/
 public interface SuperDTO extends Serializable {
 }
