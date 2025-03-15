@@ -28,17 +28,22 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderDate(dto.getOrderDate());
         order.setTotalPrice(dto.getTotalPrice());
 
-        List<OrderItemEntity> orderItems = dto.getOrderItems().stream().map(itemDTO -> {
+        // Null check for orderItems
+        List<OrderItemEntity> orderItems = (dto.getOrderItems() != null)
+                ? dto.getOrderItems().stream().map(itemDTO -> {
             OrderItemEntity orderItem = new OrderItemEntity();
+            orderItem.setItemId(itemDTO.getItemId());
             orderItem.setQuantity(itemDTO.getQuantity());
             orderItem.setPrice(itemDTO.getPrice());
             orderItem.setOrder(order);
             return orderItem;
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toList())
+                : List.of(); // Use an empty list if null
 
         order.setOrderItems(orderItems);
         orderDAO.save(order);
     }
+
 
     @Override
     public void delete(String id) {
