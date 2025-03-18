@@ -30,6 +30,11 @@ Ensure you have the following installed:
 https://github.com/ApsaraWitharana/SpringBoot-Ecommerce-Backend-Microservice.git
 ```
 
+### API Testing with Postman 
+```sh
+https://documenter.getpostman.com/view/35385905/2sAYkDNg3R
+```
+
 ### Configuration
 1. Update `application.properties` or `application.yml` for each service with MySQL database configurations.
 2. Configure **Eureka Server** settings.
