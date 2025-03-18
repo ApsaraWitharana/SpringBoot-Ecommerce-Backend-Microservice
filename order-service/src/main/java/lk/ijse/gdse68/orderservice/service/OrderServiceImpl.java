@@ -23,25 +23,42 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void save(OrderDTO dto) {
+        // Create and set OrderEntity
         OrderEntity order = new OrderEntity();
         order.setId(dto.getId());
         order.setOrderDate(dto.getOrderDate());
-        order.setTotalPrice(dto.getTotalPrice());
+        order.setCustomerId(dto.getCustomerId());
 
-        // Null check for orderItems
+        // Save order first (ensuring ID is available)
+        orderDAO.save(order);
+
+        // Calculate total price
+        double totalPrice = 0.0;
+
+        // Convert OrderItemDTO list to OrderItemEntity list
         List<OrderItemEntity> orderItems = (dto.getOrderItems() != null)
                 ? dto.getOrderItems().stream().map(itemDTO -> {
             OrderItemEntity orderItem = new OrderItemEntity();
+            orderItem.setId(String.valueOf(itemDTO.getId())); // Generate unique ID
             orderItem.setItemId(itemDTO.getItemId());
             orderItem.setQuantity(itemDTO.getQuantity());
             orderItem.setPrice(itemDTO.getPrice());
-            orderItem.setOrder(order);
+            orderItem.setOrder(order); // Set relationship
             return orderItem;
         }).collect(Collectors.toList())
-                : List.of(); // Use an empty list if null
+                : List.of(); // Empty list if null
 
-        order.setOrderItems(orderItems);
-        orderDAO.save(order);
+        // Calculate total price after mapping items
+        totalPrice = orderItems.stream()
+                .mapToDouble(item -> item.getQuantity() * item.getPrice())
+                .sum();
+
+        // Update order entity with total price
+        order.setTotalPrice(totalPrice);
+        orderDAO.save(order); // Update order after setting total price
+
+        // Save order items
+        orderItemDAO.saveAll(orderItems);
     }
 
 
