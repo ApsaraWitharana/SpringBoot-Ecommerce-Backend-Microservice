@@ -76,11 +76,6 @@ mvn spring-boot:run
 - `POST /customers` - Register a new customer
 - `GET /customers/{id}` - Get customer details
 
-### API Document
-```
-https://documenter.getpostman.com/view/35385905/2sAYdbPtSH
-```  
-
 ## Contributing
 Contributions are welcome! Feel free to submit a pull request.
 
